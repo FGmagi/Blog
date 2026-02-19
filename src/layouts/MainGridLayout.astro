@@ -630,6 +630,7 @@ const transparentClass = shouldEnableTransparency
                                     src={Array.isArray(bannerImages.mobile) ? bannerImages.mobile[index] : (typeof bannerImages.mobile === 'string' ? bannerImages.mobile : '')} 
                                     position={siteConfig.banner.position}
                                     loading={index === 0 ? "eager" : "lazy"}
+                                    
                                 />
                             )}
                             <!-- Desktop/Tablet: use desktop-specific images -->

@@ -21,6 +21,27 @@ import { LinkPreset } from "./types/config";
 // 定义站点语言
 const SITE_LANG = "zh_CN"; // 语言代码，例如：'en', 'zh_CN', 'ja' 等。
 const SITE_TIMEZONE = 8; //设置你的网站时区 from -12 to 12 default in UTC+8
+
+const fullBanner = {
+	desktop: ["/assets/desktop-banner/FlandreScarlet_0.webp"], // 桌面横幅图片
+	mobile: [
+		"/assets/mobile-banner/Shinku_1.webp",
+		"/assets/mobile-banner/Shinku_2.webp",
+		"/assets/mobile-banner/Shinku_3.webp",
+	], // 移动横幅图片
+};
+const wideBanner = {
+	desktop: [
+		"/assets/desktop-banner/FlandreScarlet_1.webp",
+		"/assets/desktop-banner/Shinku_0.webp",
+	], // 桌面横幅图片
+	mobile: [
+		"/assets/mobile-banner/Shinku_1.webp",
+		"/assets/mobile-banner/Shinku_2.webp",
+		"/assets/mobile-banner/Shinku_3.webp",
+	],
+};
+
 export const siteConfig: SiteConfig = {
 	title: "FGmagi Blog",
 	subtitle: "少女祈祷中",
@@ -42,8 +63,8 @@ export const siteConfig: SiteConfig = {
 		diary: true, // 日记页面开关
 		friends: false, // 友链页面开关
 		projects: true, // 项目页面开关
-		skills: true, // 技能页面开关
-		timeline: true, // 时间线页面开关
+		skills: false, // 技能页面开关
+		timeline: false, // 时间线页面开关
 		albums: true, // 相册页面开关
 		devices: true, // 设备页面开关
 	},
@@ -67,7 +88,7 @@ export const siteConfig: SiteConfig = {
 	},
 
 	bangumi: {
-		userId: "your-bangumi-id", // 在此处设置你的Bangumi用户ID，可以设置为 "sai" 测试
+		userId: "1215825", // 在此处设置你的Bangumi用户ID，可以设置为 "sai" 测试
 		fetchOnDev: false, // 是否在开发环境下获取 Bangumi 数据（默认 false），获取前先执行 pnpm build 构建 json 文件
 	},
 
@@ -101,7 +122,7 @@ export const siteConfig: SiteConfig = {
 	// 壁纸模式配置
 	wallpaperMode: {
 		// 默认壁纸模式：banner=顶部横幅，fullscreen=全屏壁纸，none=无壁纸
-		defaultMode: "banner",
+		defaultMode: "fullscreen",
 		// 整体布局方案切换按钮显示设置（默认："desktop"）
 		// "off" = 不显示
 		// "mobile" = 仅在移动端显示
@@ -113,29 +134,15 @@ export const siteConfig: SiteConfig = {
 	banner: {
 		// 支持单张图片或图片数组，当数组长度 > 1 时自动启用轮播
 		src: {
-			desktop: [
-				"/assets/desktop-banner/1.webp",
-				"/assets/desktop-banner/2.webp",
-				"/assets/desktop-banner/3.webp",
-				"/assets/desktop-banner/4.webp",
-				"/assets/desktop-banner/5.webp",
-				"/assets/desktop-banner/6.webp",
-			], // 桌面横幅图片
-			mobile: [
-				"/assets/mobile-banner/1.webp",
-				"/assets/mobile-banner/2.webp",
-				"/assets/mobile-banner/3.webp",
-				"/assets/mobile-banner/4.webp",
-				"/assets/mobile-banner/5.webp",
-				"/assets/mobile-banner/6.webp",
-			], // 移动横幅图片
+			desktop: wideBanner.desktop, // 桌面横幅图片
+			mobile: wideBanner.mobile, // 移动横幅图片
 		}, // 使用本地横幅图片
 
 		position: "center", // 等同于 object-position，仅支持 'top', 'center', 'bottom'。默认为 'center'
 
 		carousel: {
-			enable: true, // 为 true 时：为多张图片启用轮播。为 false 时：从数组中随机显示一张图片
-			interval: 1.5, // 轮播间隔时间（秒）
+			enable: false, // 为 true 时：为多张图片启用轮播。为 false 时：从数组中随机显示一张图片
+			interval: 300, // 轮播间隔时间（秒）
 		},
 
 		waves: {
@@ -155,21 +162,18 @@ export const siteConfig: SiteConfig = {
 
 		homeText: {
 			enable: true, // 在主页显示自定义文本
-			title: "わたしの部屋", // 主页横幅主标题
+			title: "", // 主页横幅主标题
 
 			subtitle: [
-				"特別なことはないけど、君がいると十分です",
-				"今でもあなたは私の光",
-				"君ってさ、知らないうちに私の毎日になってたよ",
-				"君と話すと、なんか毎日がちょっと楽しくなるんだ",
-				"今日はなんでもない日。でも、ちょっとだけいい日",
+				"前天是小兔子，昨天是小鹿，今天是你",
+				"祈祷明天对你来说，也是美好的一天",
 			],
 			typewriter: {
 				enable: true, // 启用副标题打字机效果
 
 				speed: 100, // 打字速度（毫秒）
 				deleteSpeed: 50, // 删除速度（毫秒）
-				pauseTime: 2000, // 完全显示后的暂停时间（毫秒）
+				pauseTime: 10000, // 完全显示后的暂停时间（毫秒）
 			},
 		},
 
@@ -225,30 +229,16 @@ export const siteConfig: SiteConfig = {
 };
 export const fullscreenWallpaperConfig: FullscreenWallpaperConfig = {
 	src: {
-		desktop: [
-			"/assets/desktop-banner/1.webp",
-			"/assets/desktop-banner/2.webp",
-			"/assets/desktop-banner/3.webp",
-			"/assets/desktop-banner/4.webp",
-			"/assets/desktop-banner/5.webp",
-			"/assets/desktop-banner/6.webp",
-		], // 桌面横幅图片
-		mobile: [
-			"/assets/mobile-banner/1.webp",
-			"/assets/mobile-banner/2.webp",
-			"/assets/mobile-banner/3.webp",
-			"/assets/mobile-banner/4.webp",
-			"/assets/mobile-banner/5.webp",
-			"/assets/mobile-banner/6.webp",
-		], // 移动横幅图片
+		desktop: fullBanner.desktop, // 桌面横幅图片
+		mobile: fullBanner.mobile, // 移动横幅图片
 	}, // 使用本地横幅图片
-	position: "center", // 壁纸位置，等同于 object-position
+	position: "center", //"center", // 壁纸位置，等同于 object-position
 	carousel: {
 		enable: true, // 启用轮播
-		interval: 5, // 轮播间隔时间（秒）
+		interval: 300, // 轮播间隔时间（秒）
 	},
 	zIndex: -1, // 层级，确保壁纸在背景层
-	opacity: 0.8, // 壁纸透明度
+	opacity: 0.78, // 壁纸透明度
 	blur: 1, // 背景模糊程度
 };
 
@@ -264,21 +254,32 @@ export const navBarConfig: NavBarConfig = {
 			children: [
 				{
 					name: "GitHub",
-					url: "https://github.com/matsuzaka-yuki/Mizuki",
+					url: "https://github.com/FGmagi",
 					external: true,
-					icon: "fa6-brands:github",
+					//icon: "fa6-brands:github",
+				},
+				{
+					name: "Bangumi",
+					url: "https://bgm.tv/user/1215825",
+					external: true,
 				},
 				{
 					name: "Bilibili",
 					url: "https://space.bilibili.com/403250481",
 					external: true,
-					icon: "fa6-brands:bilibili",
+					//icon: "fa6-brands:bilibili",
 				},
 				{
-					name: "Gitee",
-					url: "https://gitee.com/matsuzakayuki/Mizuki",
+					name: "Pixiv",
+					url: "https://www.pixiv.net/users/101271864",
 					external: true,
-					icon: "mdi:git",
+					//icon: "fa6-brands:bilibili",
+				},
+				{
+					name: "项目源地址",
+					url: "https://github.com/FGmagi/FGmagi.github.io",
+					external: true,
+					//icon: "mdi:git",
 				},
 			],
 		},
@@ -353,9 +354,9 @@ export const navBarConfig: NavBarConfig = {
 };
 
 export const profileConfig: ProfileConfig = {
-	avatar: "assets/images/avatar.webp", // 相对于 /src 目录。如果以 '/' 开头，则相对于 /public 目录
-	name: "まつざか ゆき",
-	bio: "世界は大きい、君は行かなければならない",
+	avatar: "/assets/images/FlandreScarlet.webp", // 相对于 /src 目录。如果以 '/' 开头，则相对于 /public 目录
+	name: "FGmagi",
+	bio: "弱水三千，只取一瓢",
 	typewriter: {
 		enable: true, // 启用个人简介打字机效果
 		speed: 80, // 打字速度（毫秒）
@@ -611,7 +612,7 @@ export const sakuraConfig: SakuraConfig = {
 
 // Pio 看板娘配置
 export const pioConfig: import("./types/config").PioConfig = {
-	enable: true, // 启用看板娘
+	enable: false, // 启用看板娘
 	models: ["/pio/models/pio/model.json"], // 默认模型路径
 	position: "left", // 模型位置
 	width: 280, // 默认宽度
